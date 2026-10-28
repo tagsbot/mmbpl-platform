@@ -1,0 +1,10 @@
+{
+  "appId": "pk.mmbpl.library",
+  "appName": "MMB Library",
+  "webDir": "www",
+  "server": { "androidScheme": "https", "cleartext": true },
+  "android": { "allowMixedContent": true, "backgroundColor": "#0B4DA2" },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 800, "backgroundColor": "#0B4DA2", "showSpinner": false, "androidScaleType": "CENTER_INSIDE" }
+  }
+}

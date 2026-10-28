@@ -32,5 +32,5 @@ cd sync-agent && npx @yao-pkg/pkg agent.js --targets node22-win-x64 --output dis
 
 ## Roadmap
 1. ✅ Website + admin panel + API + Koha Sync Agent
-2. ⏳ Mobile app (Android first), using `/api/v1`
+2. ✅ Mobile app (Android, Capacitor) in `mobile/`; APK built by GitHub Actions (`apk-builds` branch / `app-latest` release)
 3. ⏳ Desk Manager desktop app (issue / return / fees / visitors / printing)
