@@ -1,0 +1,10 @@
+<div class="page-head"><div><h1>Reports</h1><p class="muted mb0">Download as CSV (opens in Excel). For full circulation statistics use Koha reports.</p></div></div>
+<div class="grid g3 mb3">
+<?php $labels = ['overdue' => ['Overdue books', 'Members, phones and days overdue'], 'popular' => ['Most borrowed titles', 'Top 200 by issues'], 'online_members' => ['Online accounts', 'Members who activated website / app'], 'suggestions' => ['Book suggestions', 'All requests with status'], 'event_registrations' => ['Event registrations', 'All events and attendees']];
+foreach ($reports as $k): ?><div class="card"><h3 style="font-size:17px"><?= e($labels[$k][0]) ?></h3><p class="muted small"><?= e($labels[$k][1]) ?></p><a class="btn btn-outline btn-sm" href="?export=<?= $k ?>"><?= icon('download', 16) ?> Download CSV</a></div><?php endforeach; ?>
+</div>
+<div class="grid g3">
+  <div class="card"><h3>Online requests per month</h3><?php $mx = 1; foreach ($monthly as $r) $mx = max($mx, $r['renew'] + $r['reserve']); foreach ($monthly as $r): ?><div class="bar"><span class="t"><?= e($r['m']) ?></span><span class="track"><span class="fill" style="width:<?= round(($r['renew'] + $r['reserve']) / $mx * 100) ?>%"></span></span><span class="v"><?= $r['renew'] + $r['reserve'] ?></span></div><?php endforeach; ?><?php if (!$monthly): ?><p class="muted">No data yet.</p><?php endif; ?></div>
+  <div class="card"><h3>Members by category</h3><?php $tot = max(1, array_sum(array_column($cats, 'n'))); foreach ($cats as $c): ?><div class="bar"><span class="t"><?= e($c['category']) ?></span><span class="track"><span class="fill" style="width:<?= round($c['n'] / $tot * 100) ?>%;background:var(--green)"></span></span><span class="v"><?= (int)$c['n'] ?></span></div><?php endforeach; ?></div>
+  <div class="card"><h3>Applications</h3><?php foreach ($apps as $a): ?><div class="loan-row"><div class="info"><?= e(ucfirst($a['status'])) ?></div><strong><?= (int)$a['n'] ?></strong></div><?php endforeach; ?><?php if (!$apps): ?><p class="muted">None yet.</p><?php endif; ?></div>
+</div>

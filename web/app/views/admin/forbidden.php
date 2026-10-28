@@ -1,0 +1,1 @@
+<div class="card empty"><?= icon('lock', 40) ?><h2>Not allowed</h2><p>Your role does not have access to this section. Ask a super admin.</p><a class="btn btn-primary" href="<?= url('admin') ?>">Dashboard</a></div>

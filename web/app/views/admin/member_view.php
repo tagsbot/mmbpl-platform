@@ -1,0 +1,9 @@
+<div class="page-head"><div><a class="small" href="<?= url('admin/members') ?>">← Members</a><h1><?= e(member_display_name($m)) ?> <span class="mono badge badge-slate"><?= e($m['cardnumber']) ?></span></h1></div></div>
+<div class="grid g3">
+  <div class="card"><h3>Details</h3><table class="table">
+    <?php foreach (['category' => 'Category', 'phone' => 'Mobile', 'email' => 'Email', 'dob' => 'Date of birth', 'expiry_date' => 'Expiry', 'status' => 'Status', 'fines_due' => 'Fines due', 'activated_at' => 'Online account since', 'koha_borrowernumber' => 'Koha borrowernumber', 'updated_at' => 'Last synced'] as $k => $l): ?><tr><th><?= e($l) ?></th><td><?= e($m[$k]) ?></td></tr><?php endforeach; ?>
+  </table></div>
+  <div class="card"><h3>Loans (<?= count($loans) ?>)</h3><?php foreach ($loans as $l): ?><div class="loan-row"><div class="info"><b class="small"><?= e($l['title']) ?></b><span class="tiny muted"><?= e($l['barcode']) ?> · due <?= e(fmt_date($l['due_date'])) ?></span></div><?php partial('countdown', ['due' => $l['due_date']]); ?></div><?php endforeach; ?>
+    <h3 class="mt3">Reservations (<?= count($holds) ?>)</h3><?php foreach ($holds as $h): ?><div class="loan-row"><div class="info"><b class="small"><?= e($h['title']) ?></b><span class="tiny muted"><?= e($h['status']) ?></span></div></div><?php endforeach; ?></div>
+  <div class="card"><h3>Online requests</h3><?php foreach ($actions as $a): ?><div class="loan-row"><div class="info"><b class="small"><?= e($a['type']) ?></b><span class="tiny muted"><?= e(fmt_date($a['created_at'], true)) ?> <?= e($a['result']) ?></span></div><span class="badge <?= ['done' => 'badge-green', 'failed' => 'badge-red', 'pending' => 'badge-amber', 'processing' => 'badge-blue'][$a['status']] ?>"><?= e($a['status']) ?></span></div><?php endforeach; ?><?php if (!$actions): ?><p class="muted">None.</p><?php endif; ?></div>
+</div>

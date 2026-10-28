@@ -1,0 +1,3 @@
+<div class="container section-sm"><div class="account-layout"><?php require __DIR__ . '/_side.php'; ?><div>
+<?php if ($m['status'] !== 'active'): ?><div class="alert <?= $m['status'] === 'blocked' ? 'alert-error' : 'alert-warn' ?>"><?= icon('alert') ?><div><strong><?= e(t('membership_' . $m['status'])) ?></strong><br><?= e(t('membership_' . $m['status'] . '_d')) ?></div></div><?php endif; ?>
+<?php if (setting('agent_last_seen') && !agent_online()): ?><div class="alert alert-info small"><?= icon('info', 18) ?><span><?= e(t('sync_delay_note', ['time' => setting('agent_last_seen') ? fmt_date(setting('agent_last_seen'), true) : '—'])) ?></span></div><?php endif; ?>

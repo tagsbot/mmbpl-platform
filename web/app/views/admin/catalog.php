@@ -1,0 +1,7 @@
+<div class="page-head"><div><h1>Catalog</h1><p class="muted mb0"><?= number_format($total) ?> titles. Koha is the master catalog: add or edit books in Koha and they appear here after the next sync.</p></div></div>
+<form class="filters-bar" method="get"><input type="search" name="s" value="<?= e(input('s')) ?>" placeholder="Title, author, ISBN, call number"><button class="btn btn-outline btn-sm">Search</button></form>
+<div class="table-wrap"><table class="table"><thead><tr><th>Title</th><th>Author</th><th>Lang</th><th>Call no</th><th>Copies</th><th>Available</th><th>Issues</th><th>Koha #</th></tr></thead><tbody>
+<?php foreach ($list as $b): ?><tr><td><a href="<?= url('book/' . $b['id']) ?>" target="_blank"><?= e(mb_strimwidth($b['title'], 0, 60, '…')) ?></a><?= $b['is_demo'] ? ' <span class="badge badge-amber">demo</span>' : '' ?></td><td><?= e($b['author']) ?></td><td><?= e($b['language']) ?></td><td class="mono"><?= e($b['call_number']) ?></td><td><?= (int)$b['copies'] ?></td><td><?= (int)$b['avail'] ?></td><td><?= (int)$b['popularity'] ?></td><td><?= e($b['koha_biblionumber']) ?></td></tr><?php endforeach; ?>
+<?php if (!$list): ?><tr><td colspan="8" class="muted" style="text-align:center;padding:32px">No books yet. They arrive with the first Koha sync.</td></tr><?php endif; ?>
+</tbody></table></div>
+<?php partial('pagination', ['total' => $total, 'perPage' => 30, 'page' => $page]); ?>

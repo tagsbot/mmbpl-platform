@@ -1,0 +1,9 @@
+web/app/config.php
+web/app/storage/*.log
+web/uploads/*
+!web/uploads/.htaccess
+!web/uploads/index.html
+sync-agent/dist/
+node_modules/
+dist/
+*.zip

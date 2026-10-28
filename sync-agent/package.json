@@ -1,0 +1,11 @@
+{
+  "name": "mmbpl-sync-agent",
+  "version": "1.0.0",
+  "description": "Koha to MMBPL website sync agent for Mian Muhammad Bakhsh Public Library",
+  "main": "agent.js",
+  "bin": "agent.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": { "start": "node agent.js", "build:win": "pkg agent.js --targets node22-win-x64 --output dist/MMBPL-Sync-Agent.exe" },
+  "pkg": { "assets": [] }
+}
